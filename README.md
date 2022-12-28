@@ -23,6 +23,7 @@ Example usage:
 
 ```python
 import asyncio
+from datetime import date
 from SlyYTAAPI import *
 
 async def main():
