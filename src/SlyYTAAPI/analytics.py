@@ -80,17 +80,16 @@ class YouTubeAnalytics(WebAPI):
 
     channel_id: str
 
-    def __init__(self, channel_id: str, app: str | OAuth2, user: str | OAuth2User, scope: str = DEFAULT_SCOPES):
+    def __init__(self, channel_id: str, app: str | OAuth2App, user: str | OAuth2User, scope: str = DEFAULT_SCOPES):
         if isinstance(user, str):
-            user = OAuth2User(user)
+            user = OAuth2User.from_json_file(user)
 
         if isinstance(app, str):
-            auth = OAuth2(app, user)
-        else:
-            auth = app
-            auth.user = user
+            app = OAuth2App.from_json_file(app)
+
+        auth = OAuth2(app, user)
+
         super().__init__(auth)
-        auth.verify_scope(scope)
         self.channel_id = channel_id
 
     # Backwards compatibility with SlyAPI < 0.4.0
