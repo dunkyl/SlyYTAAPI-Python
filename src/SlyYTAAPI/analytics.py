@@ -2,7 +2,7 @@ from dataclasses import dataclass, asdict
 from datetime import date, timedelta
 import json, csv
 from enum import Enum
-from typing import Any, TypeVar
+from typing import Any, TypeVar, Literal, TypedDict
 from SlyAPI import *
 
 def makeFilters(filters: dict[str, Any]) -> str:
@@ -48,11 +48,20 @@ class Metrics(Enum):
     def __add__(self: 'Metrics', other: 'Metrics|set[Metrics]') -> _AddOperator_Set['Metrics']:
         return _AddOperator_Set((self,)) + other
 
+class ColumnHeader(TypedDict):
+    'From https://developers.google.com/youtube/analytics/v2/reference/reports/query'
+    name: str
+    columnType: Literal['DIMENSION'] | Literal['METRIC']
+    dataType: str
+
 @dataclass
 class QueryResult:
+    '''
+    Table of data returned by YouTube Analytics API.
+    From https://developers.google.com/youtube/analytics/v2/reference/reports/query'''
     kind: str
-    columnHeaders: list[dict[str, str]] # { "name": ..., "columnType": ..., "dataType": ... }
-    rows: list[list[Any]]
+    columnHeaders: list[ColumnHeader]
+    rows: list[list[int|str|float|bool|None]]
 
     def saveJSON(self, path: str):
         with open(path, mode='w', encoding='utf8') as f:
@@ -80,7 +89,19 @@ class YouTubeAnalytics(WebAPI):
 
     channel_id: str
 
-    def __init__(self, channel_id: str, auth: OAuth2):
+    def __init__(self, channel_id: str, auth_or_app: OAuth2|str, user: str|None=None, _scopes: Any|None=None):
+        if user is not None:
+            user_ = OAuth2User.from_json_file(user)
+        else:
+            user_ = None
+        if isinstance(auth_or_app, str):
+            app = OAuth2App.from_json_file(auth_or_app)
+            if user_ is None:
+                raise ValueError('user must be specified when auth_or_app is a file path')
+            auth = OAuth2(app, user_)
+        else:
+            auth = auth_or_app
+
         super().__init__(auth)
         self.channel_id = channel_id
 

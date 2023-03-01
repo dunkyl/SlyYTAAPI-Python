@@ -1,7 +1,5 @@
 # ![sly logo](https://raw.githubusercontent.com/dunkyl/SlyMeta/main/sly%20logo.svg) Sly YTAAPI for Python
 
-> 🚧 **This library is an early work in progress! Breaking changes may be frequent.**
-
 > 🐍 For Python 3.10+
 
 ## No boilerplate, *async* and *typed* Youtube Analytics API access. 😋
@@ -42,3 +40,17 @@ async def main():
 
 asyncio.run(main())
 ```
+
+---
+
+Example CLI usage for getting authorized:
+
+```sh
+# WINDOWS
+py -m SlyYTAAPI grant
+# MacOS or Linux
+python3 -m SlyYTAAPI grant
+```
+
+Granting credentials requires a Google Cloud Console account and JSON file.
+Please see https://docs.dunkyl.net/SlyAPI-Python/tutorial/oauth2.html for more information.
