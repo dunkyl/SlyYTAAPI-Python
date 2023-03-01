@@ -1,5 +1,7 @@
 # ![sly logo](https://raw.githubusercontent.com/dunkyl/SlyMeta/main/sly%20logo.svg) Sly YTAAPI for Python
 
+<!-- elevator begin -->
+
 > 🐍 For Python 3.10+
 
 ## No boilerplate, *async* and *typed* Youtube Analytics API access. 😋
@@ -14,6 +16,8 @@ Currently, the following topics are supported:
 * Targeted queries for channels and videos
 
 You can directly grant user tokens using the command line, covering the whole OAuth 2 grant process.
+
+<!-- elevator end -->
 
 ---
 
@@ -54,3 +58,4 @@ python3 -m SlyYTAAPI grant
 
 Granting credentials requires a Google Cloud Console account and JSON file.
 Please see https://docs.dunkyl.net/SlyAPI-Python/tutorial/oauth2.html for more information.
+
