@@ -29,7 +29,7 @@ class Dimensions(Enum):
     Video           = 'video'
     # ...
 
-    def __add__(self: 'Dimensions', other: 'Dimensions'|set['Dimensions']) -> _AddOperator_Set['Dimensions']:
+    def __add__(self: 'Dimensions', other: 'Dimensions|set[Dimensions]') -> _AddOperator_Set['Dimensions']:
         return _AddOperator_Set((self,)) + other
 
 class Metrics(Enum):
@@ -45,7 +45,7 @@ class Metrics(Enum):
     SubsLost        = 'subscribersLost'
     # ...
 
-    def __add__(self: 'Metrics', other: 'Metrics'|set['Metrics']) -> _AddOperator_Set['Metrics']:
+    def __add__(self: 'Metrics', other: 'Metrics|set[Metrics]') -> _AddOperator_Set['Metrics']:
         return _AddOperator_Set((self,)) + other
 
 @dataclass

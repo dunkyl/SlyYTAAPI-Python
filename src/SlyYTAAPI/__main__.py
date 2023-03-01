@@ -1,6 +1,6 @@
 import sys, asyncio, inspect
 
-from SlySheets.sheets import Scope
+from SlyYTAAPI.analytics import Scope
 from SlyAPI.flow import *
 
 async def main(args: list[str]):

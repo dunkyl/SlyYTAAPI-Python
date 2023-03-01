@@ -2,7 +2,7 @@
 hide-toc: true
 ---
 
-# Welcome to SlySheets for Python's documentation!
+# Welcome to SlyYTAAPI for Python's documentation!
 
 ```{include}  ../README.md
 :start-after: <!-- elevator begin -->

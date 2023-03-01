@@ -6,4 +6,4 @@ API Reference
     :caption: API Reference
     :recursive:
 
-    SlySheets
+    SlyYTAAPI

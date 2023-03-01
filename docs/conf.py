@@ -60,7 +60,7 @@ exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'furo'
 html_static_path = ['_static']
-html_title = 'SlySheets for Python'
+html_title = 'SlyYTAAPI for Python'
 html_theme_options = {
     "source_repository": "https://github.com/dunkyl/SlyYTAAPI-Python/",
     "source_branch": "main",
