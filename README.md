@@ -4,7 +4,7 @@
 
 > 🐍 For Python 3.10+
 
-## No boilerplate, _async_ and _typed_ Youtube Analytics API access. 😋
+## No boilerplate, *async* and *typed* Youtube Analytics API access. 😋
 
 ```shell
 pip install slyytaapi
@@ -28,10 +28,12 @@ from SlyYTAAPI import *
 
 async def main():
 
-    analytics = await YouTubeAnalytics('UCxATMl-Cv8BEF0FtZMRvRgA', 'test/app.json', 'test/user.json')
+    auth = OAuth2('test/app.json', 'test/user.json')
+    analytics = YouTubeAnalytics('UCxATMl-Cv8BEF0FtZMRvRgA', auth)
 
     result = await analytics.query(
         since=date(2020, 1, 1),
+        end_date=date(2021, 1, 1),
         metrics=Metrics.SubsGained+Metrics.SubsLost+Metrics.WatchTime,
         dims=Dimensions.Day
         )

@@ -80,15 +80,7 @@ class YouTubeAnalytics(WebAPI):
 
     channel_id: str
 
-    def __init__(self, channel_id: str, app: str | OAuth2App, user: str | OAuth2User, scope: str = DEFAULT_SCOPES):
-        if isinstance(user, str):
-            user = OAuth2User.from_json_file(user)
-
-        if isinstance(app, str):
-            app = OAuth2App.from_json_file(app)
-
-        auth = OAuth2(app, user)
-
+    def __init__(self, channel_id: str, auth: OAuth2):
         super().__init__(auth)
         self.channel_id = channel_id
 
