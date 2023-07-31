@@ -1,9 +1,13 @@
+import pytest, os
 from datetime import date
 from SlyYTAAPI import *
 
+test_dir = os.path.dirname(__file__)
+
+@pytest.mark.skip("needs credentials")
 async def test_readme():
 
-    auth = OAuth2('test/app.json', 'test/user.json')
+    auth = OAuth2(F'{test_dir}/app.json', F'{test_dir}/user.json')
     analytics = YouTubeAnalytics('UCxATMl-Cv8BEF0FtZMRvRgA', auth)
 
     result = await analytics.query(
@@ -13,4 +17,4 @@ async def test_readme():
         dims=Dimensions.Day
         )
 
-    result.saveCSV('test/test.csv')
+    result.saveCSV(F'{test_dir}/test.csv')
