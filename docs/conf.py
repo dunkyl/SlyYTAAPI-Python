@@ -38,7 +38,7 @@ numpydoc_show_class_members = False
 
 myst_heading_anchors = 3
 
-autodoc_default_options = {
+autodoc_default_options = { # type: ignore
     "members": True,
     "inherited-members": False,
     "private-members": False,

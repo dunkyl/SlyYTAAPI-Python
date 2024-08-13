@@ -2,7 +2,7 @@ from dataclasses import dataclass, asdict
 from datetime import date, timedelta
 import json, csv
 from enum import Enum
-from typing import Any, TypeVar, Literal, TypedDict
+from typing import Any, TypeVar, Literal, TypedDict, cast
 from SlyAPI import *
 
 def makeFilters(filters: dict[str, Any]) -> str:
@@ -17,7 +17,7 @@ class _AddOperator_Set(set[_T]):
     EnumParams (type removed from SlyAPI)'''
     def __add__(self, other: _T|set[_T]) -> '_AddOperator_Set[_T]':
         if isinstance(other, set):
-            return _AddOperator_Set((*self, *other))
+            return _AddOperator_Set((*self, *cast(set[_T], other)))
         return _AddOperator_Set((*self, other))
 
 class Dimensions(Enum):
